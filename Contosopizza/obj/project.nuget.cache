@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "4SMuifHKKlI=",
+  "success": true,
+  "projectFilePath": "/Users/m.curtis/Documents/Education/Pathways/2026/block_4/cse325/cse325/Contosopizza/Contosopizza.csproj",
+  "expectedPackageFiles": [
+    "/Users/m.curtis/.nuget/packages/microsoft.aspnetcore.openapi/10.0.7/microsoft.aspnetcore.openapi.10.0.7.nupkg.sha512",
+    "/Users/m.curtis/.nuget/packages/microsoft.openapi/2.0.0/microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'Microsoft.OpenApi' 2.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc",
+      "projectPath": "/Users/m.curtis/Documents/Education/Pathways/2026/block_4/cse325/cse325/Contosopizza/Contosopizza.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/m.curtis/Documents/Education/Pathways/2026/block_4/cse325/cse325/Contosopizza/Contosopizza.csproj",
+      "libraryId": "Microsoft.OpenApi",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}
