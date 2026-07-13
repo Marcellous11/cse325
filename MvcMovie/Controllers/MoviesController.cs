@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Data;
 using MvcMovie.Models;
+using NuGet.Common;
 
 namespace MvcMovie.Controllers
 {
@@ -20,7 +21,7 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies
-        public async Task<IActionResult> Index(string movieGenre, string searchString)
+        public async Task<IActionResult> Index(string movieGenre, string searchString, int movieYear)
         {
             if (_context.Movie == null)
             {
@@ -31,12 +32,19 @@ namespace MvcMovie.Controllers
             IQueryable<string> genreQuery = from m in _context.Movie
                                             orderby m.Genre
                                             select m.Genre;
+            IQueryable<int> yearQuery = from m in _context.Movie
+                                            orderby m.ReleaseDate
+                                            select m.ReleaseDate.Year;
             var movies = from m in _context.Movie
                          select m;
 
             if (!string.IsNullOrEmpty(searchString))
             {
                 movies = movies.Where(s => s.Title!.ToUpper().Contains(searchString.ToUpper()));
+            }
+            if (movieYear > 0)
+            {
+                movies = movies.Where(s => s.ReleaseDate.Year >= movieYear);
             }
 
             if (!string.IsNullOrEmpty(movieGenre))
@@ -47,7 +55,8 @@ namespace MvcMovie.Controllers
             var movieGenreVM = new MovieGenreViewModel
             {
                 Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
-                Movies = await movies.ToListAsync()
+                Movies = await movies.ToListAsync(),
+                Years = new SelectList(await yearQuery.Distinct().ToListAsync()),
             };
 
             return View(movieGenreVM);
